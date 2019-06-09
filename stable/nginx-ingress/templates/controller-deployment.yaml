@@ -109,6 +109,9 @@ spec:
             httpGet:
               path: /healthz
               port: {{ .Values.controller.livenessProbe.port }}
+              {{- if .Values.controller.livenessProbe.host }}
+              host: {{ .Values.controller.livenessProbe.host }}
+              {{- end }}
               scheme: HTTP
             initialDelaySeconds: {{ .Values.controller.livenessProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.controller.livenessProbe.periodSeconds }}
@@ -146,6 +149,9 @@ spec:
             httpGet:
               path: /healthz
               port: {{ .Values.controller.readinessProbe.port }}
+              {{- if .Values.controller.readinessProbe.host }}
+              host: {{ .Values.controller.readinessProbe.host }}
+              {{- end }}
               scheme: HTTP
             initialDelaySeconds: {{ .Values.controller.readinessProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.controller.readinessProbe.periodSeconds }}
